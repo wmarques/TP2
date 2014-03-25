@@ -20,7 +20,7 @@ public class CaseImplementee implements Case {
 	@Override
 	public boolean canMoveToCase() {
 		// TODO Auto-generated method stub
-		return false;
+		return vasy;
 	}
 	
 	public CaseImplementee(int inPosX, int inPosY) {
