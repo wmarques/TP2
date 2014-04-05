@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 import package1.Case;
 import package1.CaseMur;
@@ -36,10 +37,11 @@ public class Labyrinthe {
 			
 			for(int i=0; i<tailleX;i++) {
 				tmp = lect.readLine();
+				//System.out.println(tmp);
 				for(int j=0; j<tailleY;j++) {
 					if(tmp.charAt(j)=='_') tab[i][j] = new CaseTrou(i,j);
-					if(tmp.charAt(j)=='X') tab[i][j] = new CaseMur(i,j);
-				}
+					else if(tmp.charAt(j)=='X') tab[i][j] = new CaseMur(i,j);
+				}	
 			}
 		}
 		catch(NullPointerException e)
@@ -53,10 +55,25 @@ public class Labyrinthe {
 	}
 	
 	public void move(int x, int y) throws ImpossibleMoveException {
-		if(x>tailleX-1 || x<0 || y>tailleY-1 || y<0 || tab[x][y].canMoveToCase()==false) throw(new ImpossibleMoveException());
+		if(x>tailleX-1 || x<0 || y>tailleY-1 || y<0 || tab[x][y].canMoveToCase()==false) 
+			throw(new ImpossibleMoveException("Mouvement impossible!"));
+		else {
+			posX = x;
+			posY = y;
+		}
 	}
 	
 	public void automove() {
-		
+		Random randomGenerator = new Random();
+		posX = randomGenerator.nextInt(tailleX);
+		posY = randomGenerator.nextInt(tailleY);
+	}
+
+	public int getPosX() {
+		return posX;
+	}
+
+	public int getPosY() {
+		return posY;
 	}
 }

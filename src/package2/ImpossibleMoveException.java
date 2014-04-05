@@ -1,7 +1,11 @@
 package package2;
 
 public class ImpossibleMoveException extends Exception {
-	public String getMessage() {
-		return "Impossible move exception";
+	public ImpossibleMoveException(String message) {
+		super(message);
 	}
+	
+	/*public String getMessage() {
+		return message;
+	}*/
 }
