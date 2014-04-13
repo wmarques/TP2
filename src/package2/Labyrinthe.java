@@ -16,6 +16,40 @@ public class Labyrinthe {
 	public int tailleX, tailleY;
 	public int departX, departY;
 	public int arriveeX, arriveeY;
+	
+
+	public int getDepartX() {
+		return departX;
+	}
+
+	public void setDepartX(int departX) {
+		this.departX = departX;
+	}
+
+	public int getDepartY() {
+		return departY;
+	}
+
+	public void setDepartY(int departY) {
+		this.departY = departY;
+	}
+
+	public int getArriveeX() {
+		return arriveeX;
+	}
+
+	public void setArriveeX(int arriveeX) {
+		this.arriveeX = arriveeX;
+	}
+
+	public int getArriveeY() {
+		return arriveeY;
+	}
+
+	public void setArriveeY(int arriveeY) {
+		this.arriveeY = arriveeY;
+	}
+
 	private int posX, posY;
 
 	public void initFromFile(File lab) throws FileFormatException {
@@ -27,7 +61,7 @@ public class Labyrinthe {
 			tmp = lect.readLine();
 			if(tmp.length()!=11) {
 				lect.close();
-				throw new FileFormatException("Paramètres manquants ou en trop !");
+				throw new FileFormatException("Paramï¿½tres manquants ou en trop !");
 			}
 			
 				tailleX = (int)(tmp.charAt(0) - '0');
@@ -41,7 +75,7 @@ public class Labyrinthe {
 			if(tailleX<1 || tailleY<1 || departX <0 || departX>tailleX-1 || departY<0 || departY>tailleY-1
 					|| arriveeX <0 || arriveeX>tailleX-1 || arriveeY<0 || arriveeY>tailleY-1) {
 				lect.close();
-				throw new FileFormatException("Paramètres taille, depart ou arrivée incorrects");
+				throw new FileFormatException("Paramï¿½tres taille, depart ou arrivï¿½e incorrects");
 			}
 
 			tab = new Case[tailleX][tailleY];
