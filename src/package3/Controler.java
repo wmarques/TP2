@@ -7,8 +7,16 @@ import package2.FileFormatException;
 import package2.ImpossibleMoveException;
 import package2.Labyrinthe;
 
+/**
+ * Main class. 
+ * First we load the file using initFormFile method and we catch the exception if there is a file format problem.
+ * Then we move the user randomly until he reaches the goal. If the move is impossible, we catch the exception.
+ * We display each step.
+ * @author William Marques, Alexandre Bruneau
+ *
+ */
 public class Controler {
-
+	
 	public static void main(String[] args) {
 		Labyrinthe lab = new Labyrinthe();
 		File labFile = new File("labyrinthe.txt");
@@ -19,9 +27,12 @@ public class Controler {
 		} catch (FileFormatException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println("Arrivé X : "+lab.getArriveeX() + " Arrivé Y : "+lab.getArriveeY());
+		System.out.println("Labyrinthe recupere :");
+		lab.print();
+		System.out.println("Depart X : "+lab.getDepartX() + " Depart Y : "+lab.getDepartY());
+		System.out.println("Arrivee X : "+lab.getArriveeX() + " Arrivee Y : "+lab.getArriveeY());
 
-		while(lab.getPosX()!=lab.getArriveeX() && lab.getPosY()!=lab.getArriveeY()){
+		while(lab.getPosX()!=lab.getArriveeX() || lab.getPosY()!=lab.getArriveeY()){
 			myRand=randomGen.nextInt(4);
 			try {
 				switch (myRand) {

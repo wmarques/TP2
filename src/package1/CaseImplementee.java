@@ -1,25 +1,26 @@
 package package1;
 
-
+/**
+ * Mother class of CaseMur and CaseTrou that implements Case interface.
+ * @author William Marques, Alexandre Bruneau
+ *
+ */
 public class CaseImplementee implements Case {
 	protected int posX, posY;
 	protected boolean vasy;
 
 	@Override
 	public int getPositionX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posX;
 	}
 
 	@Override
 	public int getPositionY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posY;
 	}
 
 	@Override
 	public boolean canMoveToCase() {
-		// TODO Auto-generated method stub
 		return vasy;
 	}
 	

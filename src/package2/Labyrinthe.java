@@ -10,48 +10,57 @@ import package1.Case;
 import package1.CaseMur;
 import package1.CaseTrou;
 
+/**
+ * Our model class that contains all necessary methods.
+ * @author William Marques, Alexandre Bruneau
+ *
+ */
 public class Labyrinthe {
-
-	private Case tab[][];
-	public int tailleX, tailleY;
-	public int departX, departY;
-	public int arriveeX, arriveeY;
 	
+	/**
+	 * Array of Case objects, that's the maze.
+	 */
+	private Case tab[][];
+	
+	/**
+	 * Length of the maze (that's the length of the tab array too).
+	 */
+	public int tailleX, tailleY;
+	
+	/**
+	 * Starting coordinates.
+	 */
+	public int departX, departY;
+	/**
+	 * Ending coordinates.
+	 */
+	public int arriveeX, arriveeY;
+	/**
+	 * User's coordinates.
+	 */
+	private int posX, posY;
 
 	public int getDepartX() {
 		return departX;
-	}
-
-	public void setDepartX(int departX) {
-		this.departX = departX;
 	}
 
 	public int getDepartY() {
 		return departY;
 	}
 
-	public void setDepartY(int departY) {
-		this.departY = departY;
-	}
-
 	public int getArriveeX() {
 		return arriveeX;
-	}
-
-	public void setArriveeX(int arriveeX) {
-		this.arriveeX = arriveeX;
 	}
 
 	public int getArriveeY() {
 		return arriveeY;
 	}
-
-	public void setArriveeY(int arriveeY) {
-		this.arriveeY = arriveeY;
-	}
-
-	private int posX, posY;
-
+	
+	/**
+	 * This method will load parameters, check them and load the maze into the tab array.
+	 * @param lab File that contains parameters and maze.
+	 * @throws FileFormatException Thrown if there is a problem in the file.
+	 */
 	public void initFromFile(File lab) throws FileFormatException {
 		BufferedReader lect;
 		String tmp="";
@@ -63,7 +72,7 @@ public class Labyrinthe {
 				lect.close();
 				throw new FileFormatException("Param�tres manquants ou en trop !");
 			}
-			
+				//Conversion from char to int
 				tailleX = (int)(tmp.charAt(0) - '0');
 				tailleY = (int)(tmp.charAt(2) - '0');
 				departX = (int)(tmp.charAt(4) - '0');
@@ -98,20 +107,42 @@ public class Labyrinthe {
 			throw new FileFormatException("IO Issue");
 		}
 	}
-
+	
+	/**
+	 * Check if the move is possible (no wall, no out of the maze), if yes it updates posX and posY.
+	 * @param x x position where the user want to go.
+	 * @param y y position where the user want to go.
+	 * @throws ImpossibleMoveException if the move is impossible.
+	 */
 	public void move(int x, int y) throws ImpossibleMoveException {
 		if(x>tailleX-1 || x<0 || y>tailleY-1 || y<0 || tab[x][y].canMoveToCase()==false) 
-			throw(new ImpossibleMoveException("Mouvement impossible!"));
+			throw(new ImpossibleMoveException("Mouvement impossible en X:" + x + " et Y:" + y));
 		else {
 			posX = x;
 			posY = y;
 		}
 	}
-
+	
+	/**
+	 * Initialize randomly posX and posY
+	 */
 	public void automove() {
 		Random randomGenerator = new Random();
 		posX = randomGenerator.nextInt(tailleX);
 		posY = randomGenerator.nextInt(tailleY);
+	}
+	
+	/**
+	 * Display the maze, using toString methods of CaseTrou and CaseMur.
+	 */
+	public void print () {
+		for(int i=0;i<tailleX;i++) {
+			System.out.println();
+			for(int j=0;j<tailleY;j++) {
+				System.out.print(tab[i][j].toString());
+			}
+		}
+		System.out.println();
 	}
 
 	public int getPosX() {
