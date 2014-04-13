@@ -33,6 +33,7 @@ public class Controler {
 		System.out.println("Arrivee X : "+lab.getArriveeX() + " Arrivee Y : "+lab.getArriveeY());
 
 		while(lab.getPosX()!=lab.getArriveeX() || lab.getPosY()!=lab.getArriveeY()){
+			System.out.println("X : " + lab.getPosX() + " Y : " + lab.getPosY());
 			myRand=randomGen.nextInt(4);
 			try {
 				switch (myRand) {
@@ -54,7 +55,7 @@ public class Controler {
 					break;
 
 				}		
-				System.out.println("X : " + lab.getPosX() + " Y : " + lab.getPosY());
+				
 			} catch (ImpossibleMoveException e) {
 				e.printStackTrace();
 			}

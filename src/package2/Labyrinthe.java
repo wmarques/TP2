@@ -84,7 +84,7 @@ public class Labyrinthe {
 			if(tailleX<1 || tailleY<1 || departX <0 || departX>tailleX-1 || departY<0 || departY>tailleY-1
 					|| arriveeX <0 || arriveeX>tailleX-1 || arriveeY<0 || arriveeY>tailleY-1) {
 				lect.close();
-				throw new FileFormatException("Param�tres taille, depart ou arriv�e incorrects");
+				throw new FileFormatException("Parametres taille, depart ou arrivee incorrects");
 			}
 
 			tab = new Case[tailleX][tailleY];
@@ -115,7 +115,7 @@ public class Labyrinthe {
 	 * @throws ImpossibleMoveException if the move is impossible.
 	 */
 	public void move(int x, int y) throws ImpossibleMoveException {
-		if(x>tailleX-1 || x<0 || y>tailleY-1 || y<0 || tab[x][y].canMoveToCase()==false) 
+		if(x>tailleX-1 || x<0 || y>tailleY-1 || y<0 || tab[y][x].canMoveToCase()==false) 
 			throw(new ImpossibleMoveException("Mouvement impossible en X:" + x + " et Y:" + y));
 		else {
 			posX = x;
